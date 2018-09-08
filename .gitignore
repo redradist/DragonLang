@@ -1,0 +1,4 @@
+# Ignoring the archive files
+bin
+.idea/
+cmake-build-debug/
