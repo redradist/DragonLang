@@ -5,7 +5,7 @@
 
 #include <boost/format.hpp>
 
-#include "LexicalAnalizer.hpp"
+#include "LexicalAnalyzer.hpp"
 
 namespace DragonLang::Common {
 

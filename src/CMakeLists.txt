@@ -9,7 +9,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(INC_ALL "Dragon.hpp")
 set(SRC_ALL "main.cpp"
             "Dragon.cpp"
-            "common/lexical_analyzer/LexicalAnalizer.cpp")
+            "common/lexical_analyzer/LexicalAnalyzer.cpp")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 

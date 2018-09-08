@@ -7,14 +7,14 @@ file(GLOB_RECURSE SRC_ALL FOLLOW_SYMLINKS "*.c" "*.cpp")
 message(STATUS "SRC_ALL is ${SRC_ALL}")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR}/../src)
-list(APPEND SRC_ALL ${CMAKE_CURRENT_LIST_DIR}/../src/common/lexical_analyzer/LexicalAnalizer.cpp)
+list(APPEND SRC_ALL ${CMAKE_CURRENT_LIST_DIR}/../src/common/lexical_analyzer/LexicalAnalyzer.cpp)
 
 #add_definitions(-D_TEST_PWD=${CMAKE_CURRENT_LIST_DIR})
 
 ################################
 # GTest
 ################################
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../googletest googletest)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../ExternalTools/googletest googletest)
 enable_testing()
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 

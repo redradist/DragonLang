@@ -6,7 +6,7 @@
 
 #include <boost/format.hpp>
 
-#include "common/lexical_analyzer/LexicalAnalizer.hpp"
+#include "common/lexical_analyzer/LexicalAnalyzer.hpp"
 
 using DragonLang::Common::LexicalAnalyzer;
 
@@ -23,7 +23,7 @@ struct LexicalAnalyzerTest : testing::Test {
 TEST_F(LexicalAnalyzerTest, ValidFile)
 {
   lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string( "/home/redra/Projects/DragonLanguage/Kingdom/tests" )+
-                                                        "/common/lexical_analyzer/files/Code.me");
+                                                        "/common/lexical_analyzer/files/Code0.me");
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 46);
 }
