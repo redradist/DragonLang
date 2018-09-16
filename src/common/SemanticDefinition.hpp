@@ -1,9 +1,11 @@
-#ifndef SEMANTIC_DEFINITION
-#define SEMANTIC_DEFINITION
+#ifndef DRAGONLANGUAGE_SEMANTIC_DEFINITION
+#define DRAGONLANGUAGE_SEMANTIC_DEFINITION
 
 #include <string>
 #include <unordered_set>
 #include <regex>
+
+namespace DragonLang::Common {
 
 enum class TokenId {
   SpecialSymbol, // < > + - = - > " '
@@ -16,13 +18,13 @@ enum class TokenId {
 };
 
 inline std::unordered_set<char> const kNewLines = {
-   '\r',
-   '\n',
+  '\r',
+  '\n',
 };
 
 inline std::unordered_set<char> const kIndentSymbols = {
-   ' ',
-   '\t',
+  ' ',
+  '\t',
 };
 
 inline std::regex_constants::syntax_option_type const kRegexOptions =
@@ -30,82 +32,82 @@ inline std::regex_constants::syntax_option_type const kRegexOptions =
     std::regex_constants::optimize;
 
 inline std::regex const kRegexKeyword(
-    R"(^()"
-    R"(yield|)"
-    R"(return|)"
-    R"(enum|)"
-    R"(struct|)"
-    R"(class|)"
-    R"(function|)"
-    R"(method|)"
-    R"(public|)"
-    R"(protected|)"
-    R"(private|)"
-    R"(internal|)"
-    R"(data|)"
-    R"(interface|)"
-    R"(import|)"
-    R"(from|)"
-    R"(void|)"
-    R"(new|)"
-    R"(delete|)"
-    R"(extension|)"
-    R"(extends|)"
-    R"(inherits|)"
-    R"(implements|)"
-    R"(var|)"
-    R"(auto|)"
-    R"(char|)"
-    R"(char8|)"
-    R"(char16|)"
-    R"(char32|)"
-    R"(byte|)"
-    R"(await|)"
-    R"(async|)"
-    R"(if|)"
-    R"(else|)"
-    R"(try|)"
-    R"(catch|)"
-    R"(atomic|)"
-    R"(volatile|)"
-    R"(inline)"
-    R"()(\s|\W|$))", kRegexOptions);
+  R"(^()"
+  R"(yield|)"
+  R"(return|)"
+  R"(enum|)"
+  R"(struct|)"
+  R"(class|)"
+  R"(function|)"
+  R"(method|)"
+  R"(public|)"
+  R"(protected|)"
+  R"(private|)"
+  R"(internal|)"
+  R"(data|)"
+  R"(interface|)"
+  R"(import|)"
+  R"(from|)"
+  R"(void|)"
+  R"(new|)"
+  R"(delete|)"
+  R"(extension|)"
+  R"(extends|)"
+  R"(inherits|)"
+  R"(implements|)"
+  R"(var|)"
+  R"(auto|)"
+  R"(char|)"
+  R"(char8|)"
+  R"(char16|)"
+  R"(char32|)"
+  R"(byte|)"
+  R"(await|)"
+  R"(async|)"
+  R"(if|)"
+  R"(else|)"
+  R"(try|)"
+  R"(catch|)"
+  R"(atomic|)"
+  R"(volatile|)"
+  R"(inline)"
+  R"()(\s|\W|$))", kRegexOptions);
 inline std::regex const kRegexContextKeyword(
-    R"(^()"
-    R"(in|)"
-    R"(is|)"
-    R"(not|)"
-    R"(as|)"
-    R"(to)"
-    R"()(\s|\W|$))", kRegexOptions);
+  R"(^()"
+  R"(in|)"
+  R"(is|)"
+  R"(not|)"
+  R"(as|)"
+  R"(to)"
+  R"()(\s|\W|$))", kRegexOptions);
 inline std::regex const kRegexSpecialSymbol(
-    R"(^([)"
-    R"(\()"
-    R"(\))"
-    R"(\[)"
-    R"(\])"
-    R"(\$)"
-    R"(\@)"
-    R"(\!)"
-    R"(\~)"
-    R"(\^)"
-    R"(\&)"
-    R"(\*)"
-    R"(\%)"
-    R"(\?)"
-    R"(\:)"
-    R"(\;)"
-    R"(\,)"
-    R"(\.)"
-    R"(\-)"
-    R"(\+)"
-    R"(\=)"
-    R"(\>)"
-    R"(\<)"
-    R"(\+)"
-    R"(\{)"
-    R"(\})"
-    R"(]))", kRegexOptions);
+  R"(^([)"
+  R"(\()"
+  R"(\))"
+  R"(\[)"
+  R"(\])"
+  R"(\$)"
+  R"(\@)"
+  R"(\!)"
+  R"(\~)"
+  R"(\^)"
+  R"(\&)"
+  R"(\*)"
+  R"(\%)"
+  R"(\?)"
+  R"(\:)"
+  R"(\;)"
+  R"(\,)"
+  R"(\.)"
+  R"(\-)"
+  R"(\+)"
+  R"(\=)"
+  R"(\>)"
+  R"(\<)"
+  R"(\+)"
+  R"(\{)"
+  R"(\})"
+  R"(]))", kRegexOptions);
 inline std::regex const kRegexNumberConst(R"(^(([0-9]+([.][0-9]*)?|[.][0-9]+)(e([0-9]+([.][0-9]*)?|[.][0-9]+))?)(\s|\W|$))", kRegexOptions);
 inline std::regex const kRegexString0Const(R"(^'(.*)')", kRegexOptions);
 inline std::regex const kRegexString1Const(R"(^''(.*)'')", kRegexOptions);
@@ -115,4 +117,6 @@ inline std::regex const kRegexString4Const(R"(^\"\"(.*)\"\")", kRegexOptions);
 inline std::regex const kRegexString5Const(R"(^\"\"\"(.*)\"\"\")", kRegexOptions);
 inline std::regex const kRegexSymbolId(R"(^([_A-Za-z][_A-Za-z\d]*)(\s|\W|$))", kRegexOptions);
 
-#endif // SEMANTIC_DEFINITION
+}
+
+#endif  // DRAGONLANGUAGE_SEMANTIC_DEFINITION

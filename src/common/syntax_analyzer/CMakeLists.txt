@@ -11,5 +11,3 @@ include_directories(../)
 
 add_library(${PROJECT_NAME} OBJECT ${SRC_ALL} ${INC_ALL})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INC_ALL})
-
-

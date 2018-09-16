@@ -1,5 +1,5 @@
-#ifndef LEXICAL_ANALYZER
-#define LEXICAL_ANALYZER
+#ifndef DRAGONLANGUAGE_LEXICAL_ANALYZER
+#define DRAGONLANGUAGE_LEXICAL_ANALYZER
 
 #include <string>
 #include <vector>
@@ -83,4 +83,4 @@ using Scanner = LexicalAnalyzer;
 
 }
 
-#endif // LEXICAL_ANALYZER
+#endif  // DRAGONLANGUAGE_LEXICAL_ANALYZER

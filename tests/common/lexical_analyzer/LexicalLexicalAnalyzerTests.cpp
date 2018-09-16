@@ -7,6 +7,7 @@
 
 #include "common/lexical_analyzer/LexicalAnalyzer.hpp"
 
+using DragonLang::Common::TokenId;
 using DragonLang::Common::LexicalAnalyzer;
 
 struct LexicalAnalyzerTest : testing::Test {
