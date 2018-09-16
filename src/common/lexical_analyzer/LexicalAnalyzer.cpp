@@ -9,11 +9,15 @@
 
 namespace DragonLang::Common {
 
+const int kFullMatchIndex = 0;
+const int kTokenMatchIndex = 1;
+
 LexicalAnalyzer::LexicalAnalyzer(const std::string & _file) {
   std::ifstream fileStream{_file};
   if (!fileStream) {
     std::cerr << boost::format("Cannot open file: %1%") % _file << std::endl;
     std::cerr << "Please, check the name of the file." << std::endl;
+    throw new std::string("Cannot open file !!");
   } else {
     std::string stream_buffer_ = {std::istreambuf_iterator<char>(fileStream),
                                   std::istreambuf_iterator<char>()};
@@ -96,14 +100,18 @@ LexicalAnalyzer::getNextToken() {
       std::cerr << "Error. Ambiguity !! " << results.size() << std::endl;
       for (const auto result : results) {
         std::cerr << "result.id_ = " << static_cast<int>(result.id_) << std::endl;
-        std::cerr << "result.match_[0] = " << result.match_[0] << std::endl;
+        std::cerr << "result.match_[kFullMatchIndex] = " << result.match_[kFullMatchIndex] << std::endl;
       }
       break;
     } else if (result) {
-      std::string res = result.match_[1];
+      std::string res = result.match_[kTokenMatchIndex];
       token = Token{result.id_, res};
-      std::size_t found = result.match_.str().find(res);
-      stream_range_->moveNext(found + res.size());
+      if (TokenId::TextConst == token->id_) {
+        stream_range_->moveNext(result.match_.str().size());
+      } else {
+        std::size_t found = result.match_.str().find(res);
+        stream_range_->moveNext(found + res.size());
+      }
       break;
     } else {
       stream_range_->moveNext();
@@ -184,22 +192,22 @@ SearchResult LexicalAnalyzer::isNextTextConst() const {
   std::smatch matchValue;
   return {std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString0Const) ||
+                            matchValue, kRegexString2Const) ||
+          std::regex_search(stream_range_->begin(),
+                            stream_range_->end(),
+                            matchValue, kRegexString5Const) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
                             matchValue, kRegexString1Const) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString2Const) ||
-          std::regex_search(stream_range_->begin(),
-                            stream_range_->end(),
-                            matchValue, kRegexString3Const) ||
-          std::regex_search(stream_range_->begin(),
-                            stream_range_->end(),
                             matchValue, kRegexString4Const) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString5Const),
+                            matchValue, kRegexString0Const) ||
+          std::regex_search(stream_range_->begin(),
+                            stream_range_->end(),
+                            matchValue, kRegexString3Const),
           TokenId::TextConst,
           matchValue};
 }

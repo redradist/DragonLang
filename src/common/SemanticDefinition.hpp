@@ -36,6 +36,8 @@ inline std::regex const kRegexKeyword(
     R"(enum|)"
     R"(struct|)"
     R"(class|)"
+    R"(function|)"
+    R"(method|)"
     R"(public|)"
     R"(protected|)"
     R"(private|)"
@@ -58,15 +60,6 @@ inline std::regex const kRegexKeyword(
     R"(char16|)"
     R"(char32|)"
     R"(byte|)"
-    R"(short|)"
-    R"(int|)"
-    R"(long|)"
-    R"(ushort|)"
-    R"(uint|)"
-    R"(ulong|)"
-    R"(float|)"
-    R"(double|)"
-    R"(decimal|)"
     R"(await|)"
     R"(async|)"
     R"(if|)"
@@ -113,13 +106,13 @@ inline std::regex const kRegexSpecialSymbol(
     R"(\{)"
     R"(\})"
     R"(]))", kRegexOptions);
-inline std::regex const kRegexNumberConst(R"(^([0-9]+([.][0-9]*)?|[.][0-9]+)[ifd]?(\s|\D|$))", kRegexOptions);
+inline std::regex const kRegexNumberConst(R"(^(([0-9]+([.][0-9]*)?|[.][0-9]+)(e([0-9]+([.][0-9]*)?|[.][0-9]+))?)(\s|\W|$))", kRegexOptions);
 inline std::regex const kRegexString0Const(R"(^'(.*)')", kRegexOptions);
 inline std::regex const kRegexString1Const(R"(^''(.*)'')", kRegexOptions);
 inline std::regex const kRegexString2Const(R"(^'''(.*)''')", kRegexOptions);
 inline std::regex const kRegexString3Const(R"(^\"(.*)\")", kRegexOptions);
 inline std::regex const kRegexString4Const(R"(^\"\"(.*)\"\")", kRegexOptions);
 inline std::regex const kRegexString5Const(R"(^\"\"\"(.*)\"\"\")", kRegexOptions);
-inline std::regex const kRegexSymbolId(R"(^([_\w][_\w\d]*)(\s|:|$))", kRegexOptions);
+inline std::regex const kRegexSymbolId(R"(^([_A-Za-z][_A-Za-z\d]*)(\s|\W|$))", kRegexOptions);
 
 #endif // SEMANTIC_DEFINITION

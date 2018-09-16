@@ -138,12 +138,48 @@ TEST_F(SemanticDefinitionTests, ValidParseNumber2)
 
 TEST_F(SemanticDefinitionTests, ValidParseNumber3)
 {
-  ASSERT_TRUE(std::regex_search(R"(2)",
+  ASSERT_TRUE(std::regex_search(R"(2e2)",
                                 kRegexNumberConst));
 }
 
 TEST_F(SemanticDefinitionTests, ValidParseNumber4)
 {
-  ASSERT_TRUE(std::regex_search(R"(2i)",
+  ASSERT_TRUE(std::regex_search(R"(2.e2)",
+                                kRegexNumberConst));
+}
+
+TEST_F(SemanticDefinitionTests, ValidParseNumber5)
+{
+  ASSERT_TRUE(std::regex_search(R"(2.e2.)",
+                                kRegexNumberConst));
+}
+
+TEST_F(SemanticDefinitionTests, ValidParseNumber6)
+{
+  ASSERT_TRUE(std::regex_search(R"(2.1e2.)",
+                                kRegexNumberConst));
+}
+
+TEST_F(SemanticDefinitionTests, ValidParseNumber7)
+{
+  ASSERT_TRUE(std::regex_search(R"(2.1e2.3)",
+                                kRegexNumberConst));
+}
+
+TEST_F(SemanticDefinitionTests, ValidParseNumber8)
+{
+  ASSERT_TRUE(std::regex_search(R"(.1e.3)",
+                                kRegexNumberConst));
+}
+
+TEST_F(SemanticDefinitionTests, ValidParseNumber9)
+{
+  ASSERT_TRUE(std::regex_search(R"(.1e1.3)",
+                                kRegexNumberConst));
+}
+
+TEST_F(SemanticDefinitionTests, ValidParseNumber10)
+{
+  ASSERT_TRUE(std::regex_search(R"(123124223e32)",
                                 kRegexNumberConst));
 }

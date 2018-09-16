@@ -24,28 +24,28 @@ class LexicalAnalyzer {
     std::string toString() const {
       switch (id_) {
         case TokenId::SpecialSymbol: {
-          return "<SpecialSymbol>";
+          return "<SpecialSymbol> \""+ item_ + "\"";
         }
         case TokenId::Keyword: {
-          return "<Keyword>";
+          return "<Keyword> \""+ item_ + "\"";
         }
         case TokenId::ContextKeyword: {
-          return "<ContextKeyword>";
+          return "<ContextKeyword> \""+ item_ + "\"";
         }
         case TokenId::NewLine: {
-          return "<NewLine>";
+          return "<NewLine> \""+ item_ + "\"";
         }
         case TokenId::NumberConst: {
-          return "<NumberConst>";
+          return "<NumberConst> \""+ item_ + "\"";
         }
         case TokenId::TextConst: {
-          return "<TextConst>";
+          return "<TextConst> \""+ item_ + "\"";
         }
         case TokenId::SymbolId: {
-          return "<SymbolId>";
+          return "<SymbolId> \""+ item_ + "\"";
         }
         default: {
-          return "<UnknownToken>";
+          return std::string("<!! UnknownToken [") + std::to_string(static_cast<int>(id_)) + "] !!> \"" + item_ + "\"";
         }
       }
     }
@@ -78,6 +78,8 @@ class LexicalAnalyzer {
   std::unique_ptr<InStreamRange> stream_range_;
   std::string token_buffer_;
 };
+
+using Scanner = LexicalAnalyzer;
 
 }
 

@@ -25,8 +25,11 @@ using DragonLang::Dragon;
 using DragonLang::Common::LexicalAnalyzer;
 
 int main(int _argc, char ** _argv) {
-  Dragon dragon;
-  dragon.processFile(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests" )+
-                                 "/common/lexical_analyzer/files/Code0.me");
+//  Dragon dragon;
+//  dragon.processFile(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+//                                 "/common/lexical_analyzer/files/VarNumbers.me"));
+  LexicalAnalyzer analyzer(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+                                       "/common/lexical_analyzer/files/Strings.me"));
+  auto tokens = analyzer.getAllTokens();
   return 0;
 }
