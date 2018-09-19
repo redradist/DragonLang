@@ -7,7 +7,7 @@
 
 #include <regex>
 
-#include "common/SemanticDefinition.hpp"
+#include "LexicalDefinitions.hpp"
 
 namespace DragonLang::Common {
 

@@ -9,7 +9,7 @@
 
 #include <boost/optional.hpp>
 
-#include "common/SemanticDefinition.hpp"
+#include "LexicalDefinitions.hpp"
 #include "InStreamRange.hpp"
 #include "SearchResult.hpp"
 

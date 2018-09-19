@@ -1,5 +1,5 @@
-#ifndef DRAGONLANGUAGE_SEMANTIC_DEFINITION
-#define DRAGONLANGUAGE_SEMANTIC_DEFINITION
+#ifndef DRAGONLANGUAGE_LEXICAL_DEFINITIONS
+#define DRAGONLANGUAGE_LEXICAL_DEFINITIONS
 
 #include <string>
 #include <unordered_set>
@@ -119,4 +119,4 @@ inline std::regex const kRegexSymbolId(R"(^([_A-Za-z][_A-Za-z\d]*)(\s|\W|$))", k
 
 }
 
-#endif  // DRAGONLANGUAGE_SEMANTIC_DEFINITION
+#endif  // DRAGONLANGUAGE_LEXICAL_DEFINITIONS
