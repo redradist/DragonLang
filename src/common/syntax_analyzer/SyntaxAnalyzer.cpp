@@ -11,6 +11,7 @@
 #include <string>
 #include <unordered_set>
 #include <regex>
+#include <functional>
 
 #include "SyntaxAnalyzer.hpp"
 

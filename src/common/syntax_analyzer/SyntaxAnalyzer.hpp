@@ -9,6 +9,8 @@
 #ifndef DRAGONLANGUAGE_SYNTAXANALYZER_HPP
 #define DRAGONLANGUAGE_SYNTAXANALYZER_HPP
 
+#include <unordered_map>
+
 #include <common/lexical_analyzer/LexicalAnalyzer.hpp>
 
 namespace DragonLang::Common {

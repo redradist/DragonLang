@@ -12,6 +12,35 @@ namespace DragonLang::Common {
 const int kFullMatchIndex = 0;
 const int kTokenMatchIndex = 1;
 
+std::string LexicalAnalyzer::Token::toString() const {
+  switch (id_) {
+    case TokenId::SpecialSymbol: {
+      return "<SpecialSymbol " + item_ + ">";
+    }
+    case TokenId::Keyword: {
+      return "<Keyword " + item_ + ">";
+    }
+    case TokenId::ContextKeyword: {
+      return "<ContextKeyword " + item_ + ">";
+    }
+    case TokenId::NewLine: {
+      return "<NewLine " + item_ + ">";
+    }
+    case TokenId::NumberConst: {
+      return "<NumberConst " + item_ + ">";
+    }
+    case TokenId::TextConst: {
+      return "<TextConst " + item_ + ">";
+    }
+    case TokenId::SymbolId: {
+      return "<SymbolId " + item_ + ">";
+    }
+    default: {
+      return std::string("<!! UnknownToken [") + std::to_string(static_cast<int>(id_)) + "] !!> \"" + item_ + "\"";
+    }
+  }
+}
+
 LexicalAnalyzer::LexicalAnalyzer(const std::string & _file) {
   std::ifstream fileStream{_file};
   if (!fileStream) {
@@ -126,7 +155,7 @@ LexicalAnalyzer::getAllTokens() {
   std::vector<LexicalAnalyzer::Token> tokens;
   LexicalAnalyzer::OptionalToken token;
   while (token = getNextToken()) {
-    tokens.push_back(token.get());
+    tokens.push_back(token.value());
   }
   return tokens;
 }

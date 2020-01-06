@@ -3,11 +3,10 @@
 
 #include <string>
 #include <vector>
+#include <optional>
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
-#include <boost/optional.hpp>
 
 #include "LexicalDefinitions.hpp"
 #include "InStreamRange.hpp"
@@ -21,40 +20,13 @@ class LexicalAnalyzer {
     TokenId id_;
     std::string item_;
 
-    std::string toString() const {
-      switch (id_) {
-        case TokenId::SpecialSymbol: {
-          return "<SpecialSymbol "+ item_ + ">";
-        }
-        case TokenId::Keyword: {
-          return "<Keyword "+ item_ + ">";
-        }
-        case TokenId::ContextKeyword: {
-          return "<ContextKeyword "+ item_ + ">";
-        }
-        case TokenId::NewLine: {
-          return "<NewLine "+ item_ + ">";
-        }
-        case TokenId::NumberConst: {
-          return "<NumberConst "+ item_ + ">";
-        }
-        case TokenId::TextConst: {
-          return "<TextConst "+ item_ + ">";
-        }
-        case TokenId::SymbolId: {
-          return "<SymbolId "+ item_ + ">";
-        }
-        default: {
-          return std::string("<!! UnknownToken [") + std::to_string(static_cast<int>(id_)) + "] !!> \"" + item_ + "\"";
-        }
-      }
-    }
+    std::string toString() const;
   };
 
-  using OptionalTokenId = boost::optional<TokenId>;
-  using OptionalToken = boost::optional<Token>;
+  using OptionalTokenId = std::optional<TokenId>;
+  using OptionalToken = std::optional<Token>;
 
-  LexicalAnalyzer(const std::string & _file);
+  explicit LexicalAnalyzer(const std::string & _file);
   virtual ~LexicalAnalyzer() = default;
 
   OptionalToken getNextToken();
@@ -63,14 +35,23 @@ class LexicalAnalyzer {
   void printTokens();
 
  protected:
+  [[nodiscard]]
   virtual SearchResult isNextSymbolId() const;
+  [[nodiscard]]
   virtual SearchResult isNextTextConst() const;
+  [[nodiscard]]
   virtual SearchResult isNextNumber() const;
+  [[nodiscard]]
   virtual SearchResult isNextKeyword() const;
+  [[nodiscard]]
   virtual SearchResult isNextContextKeyword() const;
+  [[nodiscard]]
   virtual SearchResult isNextSpecialSymbol() const;
+  [[nodiscard]]
   virtual bool isWhiteSpace(char const &_rawStr) const;
+  [[nodiscard]]
   virtual bool isIndentSymbol(char const &_rawStr) const;
+  [[nodiscard]]
   virtual bool isNewLine(char const &_rawStr) const;
 
  private:

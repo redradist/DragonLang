@@ -1,2 +1,2 @@
 cmake_minimum_required(VERSION 3.12)
-project(dragonc C CXX)
+project(draco C CXX)
