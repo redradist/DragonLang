@@ -79,49 +79,49 @@ TEST_F(LexicalDefinitionsTests, InvalidParseIn)
 TEST_F(LexicalDefinitionsTests, ValidParseOneQuoteString0)
 {
   ASSERT_TRUE(std::regex_search(R"('Hello Denis !!')",
-                                DragonLang::Common::kRegexString0Const));
+                                DragonLang::Common::kRegexStringSingleQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, ValidParseOneQuoteString1)
 {
   ASSERT_TRUE(std::regex_search(R"(''Hello 'Denis' !!'')",
-                                DragonLang::Common::kRegexString1Const));
+                                DragonLang::Common::kRegexStringTwoSingleQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, InvalidParseOneQuoteString0)
 {
   ASSERT_FALSE(std::regex_search(R"(''Hello Denis !!' ')",
-                                 DragonLang::Common::kRegexString1Const));
+                                 DragonLang::Common::kRegexStringTwoSingleQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, ValidParseOneQuoteString3)
 {
   ASSERT_TRUE(std::regex_search(R"('''Hello 'Denis' !!''')",
-                                DragonLang::Common::kRegexString2Const));
+                                DragonLang::Common::kRegexStringThreeSingleQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, ValidParseDoubleQuoteString0)
 {
   ASSERT_TRUE(std::regex_search(R"("Hello Denis !!")",
-                                DragonLang::Common::kRegexString3Const));
+                                DragonLang::Common::kRegexStringQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, ValidParseDoubleQuoteString1)
 {
   ASSERT_TRUE(std::regex_search(R"(""Hello 'Denis' !!"")",
-                                DragonLang::Common::kRegexString4Const));
+                                DragonLang::Common::kRegexStringTwoQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, ValidParseDoubleQuoteString2)
 {
   ASSERT_TRUE(std::regex_search(R"(""Hello "Denis" !!"")",
-                                DragonLang::Common::kRegexString4Const));
+                                DragonLang::Common::kRegexStringTwoQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, InvalidParseDoubleQuoteString0)
 {
   ASSERT_FALSE(std::regex_search(R"(""Hello Denis !!" ")",
-                                 DragonLang::Common::kRegexString4Const));
+                                 DragonLang::Common::kRegexStringTwoQuoteConst));
 }
 
 TEST_F(LexicalDefinitionsTests, ValidParseNumber0)

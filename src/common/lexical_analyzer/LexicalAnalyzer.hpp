@@ -24,25 +24,25 @@ class LexicalAnalyzer {
     std::string toString() const {
       switch (id_) {
         case TokenId::SpecialSymbol: {
-          return "<SpecialSymbol> \""+ item_ + "\"";
+          return "<SpecialSymbol "+ item_ + ">";
         }
         case TokenId::Keyword: {
-          return "<Keyword> \""+ item_ + "\"";
+          return "<Keyword "+ item_ + ">";
         }
         case TokenId::ContextKeyword: {
-          return "<ContextKeyword> \""+ item_ + "\"";
+          return "<ContextKeyword "+ item_ + ">";
         }
         case TokenId::NewLine: {
-          return "<NewLine> \""+ item_ + "\"";
+          return "<NewLine "+ item_ + ">";
         }
         case TokenId::NumberConst: {
-          return "<NumberConst> \""+ item_ + "\"";
+          return "<NumberConst "+ item_ + ">";
         }
         case TokenId::TextConst: {
-          return "<TextConst> \""+ item_ + "\"";
+          return "<TextConst "+ item_ + ">";
         }
         case TokenId::SymbolId: {
-          return "<SymbolId> \""+ item_ + "\"";
+          return "<SymbolId "+ item_ + ">";
         }
         default: {
           return std::string("<!! UnknownToken [") + std::to_string(static_cast<int>(id_)) + "] !!> \"" + item_ + "\"";

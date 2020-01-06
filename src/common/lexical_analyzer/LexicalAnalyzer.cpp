@@ -17,7 +17,7 @@ LexicalAnalyzer::LexicalAnalyzer(const std::string & _file) {
   if (!fileStream) {
     std::cerr << boost::format("Cannot open file: %1%") % _file << std::endl;
     std::cerr << "Please, check the name of the file." << std::endl;
-    throw new std::string("Cannot open file !!");
+    throw std::string("Cannot open file !!");
   } else {
     std::string stream_buffer_ = {std::istreambuf_iterator<char>(fileStream),
                                   std::istreambuf_iterator<char>()};
@@ -192,22 +192,22 @@ SearchResult LexicalAnalyzer::isNextTextConst() const {
   std::smatch matchValue;
   return {std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString2Const) ||
+                            matchValue, kRegexStringThreeSingleQuoteConst) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString5Const) ||
+                            matchValue, kRegexStringThreeQuoteConst) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString1Const) ||
+                            matchValue, kRegexStringTwoSingleQuoteConst) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString4Const) ||
+                            matchValue, kRegexStringTwoQuoteConst) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString0Const) ||
+                            matchValue, kRegexStringSingleQuoteConst) ||
           std::regex_search(stream_range_->begin(),
                             stream_range_->end(),
-                            matchValue, kRegexString3Const),
+                            matchValue, kRegexStringQuoteConst),
           TokenId::TextConst,
           matchValue};
 }

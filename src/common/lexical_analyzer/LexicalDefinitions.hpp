@@ -109,12 +109,12 @@ inline std::regex const kRegexSpecialSymbol(
   R"(\})"
   R"(]))", kRegexOptions);
 inline std::regex const kRegexNumberConst(R"(^(([0-9]+([.][0-9]*)?|[.][0-9]+)(e([0-9]+([.][0-9]*)?|[.][0-9]+))?)(\s|\W|$))", kRegexOptions);
-inline std::regex const kRegexString0Const(R"(^'([^\n]*)')", kRegexOptions);
-inline std::regex const kRegexString1Const(R"(^''([^\n]*)'')", kRegexOptions);
-inline std::regex const kRegexString2Const(R"(^'''([^]*?)''')", kRegexOptions);
-inline std::regex const kRegexString3Const(R"(^\"([^\n]*)\")", kRegexOptions);
-inline std::regex const kRegexString4Const(R"(^\"\"([^\n]*)\"\")", kRegexOptions);
-inline std::regex const kRegexString5Const(R"(^\"\"\"([^]*?)\"\"\")", kRegexOptions);
+inline std::regex const kRegexStringSingleQuoteConst(R"(^'([^\n]*)')", kRegexOptions);
+inline std::regex const kRegexStringTwoSingleQuoteConst(R"(^''([^\n]*)'')", kRegexOptions);
+inline std::regex const kRegexStringThreeSingleQuoteConst(R"(^'''([^]*?)''')", kRegexOptions);
+inline std::regex const kRegexStringQuoteConst(R"(^\"([^\n]*)\")", kRegexOptions);
+inline std::regex const kRegexStringTwoQuoteConst(R"(^\"\"([^\n]*)\"\")", kRegexOptions);
+inline std::regex const kRegexStringThreeQuoteConst(R"(^\"\"\"([^]*?)\"\"\")", kRegexOptions);
 inline std::regex const kRegexSymbolId(R"(^([_A-Za-z][_A-Za-z\d]*)(\s|\W|$))", kRegexOptions);
 
 }

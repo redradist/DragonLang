@@ -21,7 +21,8 @@ class SyntaxAnalyzer {
   void parseFile(const std::string & _file);
 
  protected:
-  std::unordered_map<std::string, std::shared_ptr<LexicalAnalyzer>> lexical_analyzers_;
+  std::unordered_map<std::string,
+                     std::shared_ptr<LexicalAnalyzer>> lexical_analyzers_;
 };
 
 using Parser = SyntaxAnalyzer;

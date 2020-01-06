@@ -8,6 +8,10 @@
 
 #include <future>
 #include <thread>
+#include <string>
+#include <unordered_set>
+#include <regex>
+
 #include "SyntaxAnalyzer.hpp"
 
 namespace DragonLang::Common {
