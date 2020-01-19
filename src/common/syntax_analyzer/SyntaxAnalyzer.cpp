@@ -9,19 +9,20 @@
 #include <future>
 #include <thread>
 #include <string>
-#include <unordered_set>
-#include <regex>
 #include <functional>
 
 #include "SyntaxAnalyzer.hpp"
 
 namespace DragonLang::Common {
 
-SyntaxAnalyzer::SyntaxAnalyzer(const std::string & _file) {
-  lexical_analyzers_[_file] = std::make_unique<LexicalAnalyzer>(_file);
-  auto task = std::packaged_task<void(const std::string &)>(
-      std::bind(&SyntaxAnalyzer::parseFile, this, _file));
-  auto taskStatus = task.get_future();
+SyntaxAnalyzer::SyntaxAnalyzer(const std::unordered_set<std::string> & _files) {
+  for (const auto & kFile : _files) {
+    lexical_analyzers_[kFile] = std::make_unique<LexicalAnalyzer>(kFile);
+    auto task = std::packaged_task<void(const std::string &)>(
+        std::bind(&SyntaxAnalyzer::parseFile, this, kFile));
+    task_statuses_[kFile] = std::move(task.get_future());
+    tasks_[kFile] = std::move(task);
+  }
 }
 
 void SyntaxAnalyzer::parseFile(const std::string & _file) {

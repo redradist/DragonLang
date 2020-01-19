@@ -18,4 +18,4 @@ add_subdirectory(compiler)
 add_subdirectory(interpreter)
 
 add_executable(dragon ${SRC_ALL} ${SRC_ALL})
-target_link_libraries(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} LLVM-10)

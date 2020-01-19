@@ -17,7 +17,7 @@ namespace DragonLang::Common {
 
 class SyntaxAnalyzer {
  public:
-  SyntaxAnalyzer(const std::string & _file);
+  SyntaxAnalyzer(const std::unordered_set<std::string> & _files);
   virtual ~SyntaxAnalyzer() = default;
 
   void parseFile(const std::string & _file);
@@ -25,6 +25,11 @@ class SyntaxAnalyzer {
  protected:
   std::unordered_map<std::string,
                      std::shared_ptr<LexicalAnalyzer>> lexical_analyzers_;
+  std::unordered_map<std::string,
+                     std::packaged_task<void(const std::string &)>> tasks_;
+  std::unordered_map<std::string,
+                     std::future<void>> task_statuses_;
+
 };
 
 using Parser = SyntaxAnalyzer;

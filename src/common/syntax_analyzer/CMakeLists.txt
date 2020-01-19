@@ -8,6 +8,8 @@ file(GLOB_RECURSE INC_ALL "*.h" "*.hpp")
 file(GLOB_RECURSE SRC_ALL "*.c" "*.cpp")
 
 include_directories(../)
+include_directories(/usr/include/llvm-10)
+include_directories(/usr/include/llvm-c-10)
 
 add_library(${PROJECT_NAME} OBJECT ${SRC_ALL} ${INC_ALL})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INC_ALL})

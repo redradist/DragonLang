@@ -20,58 +20,57 @@
 namespace DragonLang::Common::AST {
 
 /// Expression - Base class for all expression nodes
-class ExprAST {
+class Expression {
  public:
-  virtual ~ExprAST() = default;
+  virtual ~Expression() = default;
 
-  virtual Value *codegen() = 0;
+  virtual llvm::Value *codegen(llvm::IRBuilder<> & builder) = 0;
 };
 
-
-/// NumberExprAST - Expression class for numeric literals like "1.0"
-class NumberExprAST : public ExprAST {
+/// NumberExpression - Expression class for numeric literals like "1.0"
+class NumberExpression : public Expression {
   double Val;
 
  public:
-  NumberExprAST(double Val) : Val(Val) {}
+  NumberExpression(double Val) : Val(Val) {}
 
-  Value *codegen() override;
+  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };
 
-/// VariableExprAST - Expression class for referencing a variable, like "a"
-class VariableExprAST : public ExprAST {
+/// VariableExpression - Expression class for referencing a variable, like "a"
+class VariableExpression : public Expression {
   std::string Name;
 
  public:
-  VariableExprAST(const std::string &Name) : Name(Name) {}
+  VariableExpression(const std::string &Name) : Name(Name) {}
 
-  Value *codegen() override;
+  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };
 
-/// BinaryExprAST - Expression class for a binary operator
-class BinaryExprAST : public ExprAST {
+/// BinaryExpression - Expression class for a binary operator
+class BinaryExpression : public Expression {
   char Op;
-  std::unique_ptr<ExprAST> LHS, RHS;
+  std::unique_ptr<Expression> LHS, RHS;
 
  public:
-  BinaryExprAST(char Op, std::unique_ptr<ExprAST> LHS,
-                std::unique_ptr<ExprAST> RHS)
+  BinaryExpression(char Op, std::unique_ptr<Expression> LHS,
+                std::unique_ptr<Expression> RHS)
       : Op(Op), LHS(std::move(LHS)), RHS(std::move(RHS)) {}
 
-  Value *codegen() override;
+  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };
 
-/// CallExprAST - Expression class for function calls
-class CallExprAST : public ExprAST {
+/// CallExpression - Expression class for function calls
+class CallExpression : public Expression {
   std::string Callee;
-  std::vector<std::unique_ptr<ExprAST>> Args;
+  std::vector<std::unique_ptr<Expression>> Args;
 
  public:
-  CallExprAST(const std::string &Callee,
-              std::vector<std::unique_ptr<ExprAST>> Args)
+  CallExpression(const std::string &Callee,
+              std::vector<std::unique_ptr<Expression>> Args)
       : Callee(Callee), Args(std::move(Args)) {}
 
-  Value *codegen() override;
+  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };
 
 /// PrototypeAST - This class represents the "prototype" for a function,
@@ -85,21 +84,21 @@ class PrototypeAST {
   PrototypeAST(const std::string &Name, std::vector<std::string> Args)
       : Name(Name), Args(std::move(Args)) {}
 
-  Function *codegen();
+  llvm::Function *codegen(llvm::IRBuilder<> & builder);
   const std::string &getName() const { return Name; }
 };
 
 /// FunctionAST - This class represents a function definition itself
 class FunctionAST {
   std::unique_ptr<PrototypeAST> Proto;
-  std::unique_ptr<ExprAST> Body;
+  std::unique_ptr<Expression> Body;
 
  public:
   FunctionAST(std::unique_ptr<PrototypeAST> Proto,
-              std::unique_ptr<ExprAST> Body)
+              std::unique_ptr<Expression> Body)
       : Proto(std::move(Proto)), Body(std::move(Body)) {}
 
-  Function *codegen();
+  llvm::Function *codegen(llvm::IRBuilder<> & builder);
 };
 
 }
