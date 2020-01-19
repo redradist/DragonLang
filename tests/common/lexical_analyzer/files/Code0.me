@@ -9,3 +9,27 @@ number0: Number = 123124223
 number1: Number = 123124223.23
 number2: Float = 123124223.42
 number3: Decimal = 123124223.
+
+
+class MyClass[A: Int] {
+    fun getName[A: Int]() {
+        var num0: Number = 123124223.23
+        var num1: Float = 123124223.42
+        num2: Decimal = 123124223.
+    }
+
+    suspend fun getName[A: Int]() {
+        var num0: Number = 123124223.23
+        var num1: Float = 123124223.42
+        num2: Decimal = 123124223.
+    }
+
+    suspend fun getName2[A: Int]() {
+        await getName()
+    }
+}
+
+MyClass[A]() // default
+let tr = new MyClass[A]()
+tr: MyClass = new MyClass[A]()
+let tr2 = new MyClass[A]()

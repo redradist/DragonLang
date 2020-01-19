@@ -8,13 +8,13 @@
 namespace DragonLang::Common {
 
 enum class TokenId {
-  SpecialSymbol, // < > + - = - > " '
-  Keyword, // action function
-  ContextKeyword, // in, is, not, as
-  NewLine, // \r \n
-  NumberConst, // 23, 27, 2.75, 2.75f, 2.75e-23f, 2.75d, 2.75e-23d
-  TextConst, // 'Hello Denis Good Job', "Hello Denis Good Job"
-  SymbolId, // Name of variables, name of classes, name of structs and so on
+  SpecialSymbol,  // < > + - = - > " ' ...
+  Keyword,        // fun return class ...
+  ContextKeyword, // in, is, not, as ...
+  NewLine,        // \r \n
+  NumberConst,    // 23, 27, 2.75, 2.75f, 2.75e-23f, 2.75d, 2.75e-23d ...
+  TextConst,      // 'Hello Denis Good Job', "Hello Denis Good Job" ...
+  SymbolId,       // Name of variables, name of classes, name of structs and so on ...
 };
 
 inline std::unordered_set<char> const kNewLines = {
@@ -38,14 +38,14 @@ inline std::regex const kRegexKeyword(
   R"(enum|)"
   R"(struct|)"
   R"(class|)"
-  R"(function|)"
-  R"(method|)"
+  R"(fun|)"
   R"(public|)"
   R"(protected|)"
   R"(private|)"
   R"(internal|)"
   R"(data|)"
   R"(interface|)"
+  R"(trait|)"
   R"(import|)"
   R"(from|)"
   R"(void|)"
@@ -55,7 +55,7 @@ inline std::regex const kRegexKeyword(
   R"(extends|)"
   R"(inherits|)"
   R"(implements|)"
-  R"(var|)"
+  R"(let|)"
   R"(auto|)"
   R"(char|)"
   R"(char8|)"
