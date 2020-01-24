@@ -10,6 +10,7 @@
 #define DRAGONLANGUAGE_SYNTAXANALYZER_HPP
 
 #include <unordered_map>
+#include <future>
 
 #include <common/lexical_analyzer/LexicalAnalyzer.hpp>
 
@@ -18,7 +19,7 @@ namespace DragonLang::Common {
 class SyntaxAnalyzer {
  public:
   SyntaxAnalyzer(const std::unordered_set<std::string> & _files);
-  virtual ~SyntaxAnalyzer() = default;
+  virtual ~SyntaxAnalyzer();
 
   void parseFile(const std::string & _file);
 

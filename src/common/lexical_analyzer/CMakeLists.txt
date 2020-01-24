@@ -9,5 +9,5 @@ file(GLOB_RECURSE SRC_ALL "*.c" "*.cpp")
 
 include_directories(../)
 
-add_library(${PROJECT_NAME} OBJECT ${SRC_ALL} ${INC_ALL})
+add_library(${PROJECT_NAME} SHARED ${SRC_ALL} ${INC_ALL})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INC_ALL})

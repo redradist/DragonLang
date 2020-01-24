@@ -60,28 +60,28 @@ class BinaryExpression : public Expression {
   llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };
 
-/// CallExpression - Expression class for function calls
-class CallExpression : public Expression {
+/// FunCallExpression - Expression class for function calls
+class FunCallExpression : public Expression {
   std::string Callee;
   std::vector<std::unique_ptr<Expression>> Args;
 
  public:
-  CallExpression(const std::string &Callee,
-              std::vector<std::unique_ptr<Expression>> Args)
+  FunCallExpression(const std::string &Callee,
+                    std::vector<std::unique_ptr<Expression>> Args)
       : Callee(Callee), Args(std::move(Args)) {}
 
   llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };
 
-/// PrototypeAST - This class represents the "prototype" for a function,
+/// FunPrototype - This class represents the "prototype" for a function,
 /// which captures its name, and its argument names (thus implicitly the number
 /// of arguments the function takes)
-class PrototypeAST {
+class FunPrototype {
   std::string Name;
   std::vector<std::string> Args;
 
  public:
-  PrototypeAST(const std::string &Name, std::vector<std::string> Args)
+  FunPrototype(const std::string &Name, std::vector<std::string> Args)
       : Name(Name), Args(std::move(Args)) {}
 
   llvm::Function *codegen(llvm::IRBuilder<> & builder);
@@ -90,11 +90,11 @@ class PrototypeAST {
 
 /// FunctionAST - This class represents a function definition itself
 class FunctionAST {
-  std::unique_ptr<PrototypeAST> Proto;
+  std::unique_ptr<FunPrototype> Proto;
   std::unique_ptr<Expression> Body;
 
  public:
-  FunctionAST(std::unique_ptr<PrototypeAST> Proto,
+  FunctionAST(std::unique_ptr<FunPrototype> Proto,
               std::unique_ptr<Expression> Body)
       : Proto(std::move(Proto)), Body(std::move(Body)) {}
 

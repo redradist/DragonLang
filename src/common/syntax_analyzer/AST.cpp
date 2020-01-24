@@ -19,7 +19,7 @@ std::unique_ptr<Expression> LogError(const char *Str) {
   return nullptr;
 }
 
-std::unique_ptr<PrototypeAST> LogErrorP(const char *Str) {
+std::unique_ptr<FunPrototype> LogErrorP(const char *Str) {
   LogError(Str);
   return nullptr;
 }
@@ -63,7 +63,7 @@ llvm::Value *BinaryExpression::codegen(llvm::IRBuilder<> & builder) {
   }
 }
 
-llvm::Value *CallExpression::codegen(llvm::IRBuilder<> & builder) {
+llvm::Value *FunCallExpression::codegen(llvm::IRBuilder<> & builder) {
   // Look up the name in the global module table.
   llvm::Function *CalleeF = TheModule->getFunction(Callee);
   if (!CalleeF)
@@ -83,7 +83,7 @@ llvm::Value *CallExpression::codegen(llvm::IRBuilder<> & builder) {
   return builder.CreateCall(CalleeF, ArgsV, "calltmp");
 }
 
-llvm::Function *PrototypeAST::codegen(llvm::IRBuilder<> & builder) {
+llvm::Function *FunPrototype::codegen(llvm::IRBuilder<> & builder) {
   // Make the function type:  double(double,double) etc.
   std::vector<llvm::Type *> Doubles(Args.size(), llvm::Type::getDoubleTy(builder.getContext()));
   llvm::FunctionType *FT =

@@ -22,13 +22,22 @@ SyntaxAnalyzer::SyntaxAnalyzer(const std::unordered_set<std::string> & _files) {
         std::bind(&SyntaxAnalyzer::parseFile, this, kFile));
     task_statuses_[kFile] = std::move(task.get_future());
     tasks_[kFile] = std::move(task);
+    std::thread([this, kFile] {
+      auto & task = tasks_[kFile];
+      task(kFile);
+    }).detach();
+  }
+}
+
+SyntaxAnalyzer::~SyntaxAnalyzer() {
+  for (auto & taskStatus : task_statuses_) {
+    taskStatus.second.wait();
   }
 }
 
 void SyntaxAnalyzer::parseFile(const std::string & _file) {
   if (lexical_analyzers_.count(_file) > 0) {
-    auto lexicalAnalyzer = std::make_shared<LexicalAnalyzer>(_file);
-    lexical_analyzers_[_file] = lexicalAnalyzer;
+    auto & lexicalAnalyzer = lexical_analyzers_[_file];
     while (auto token = lexicalAnalyzer->getNextToken()) {
 
     }
