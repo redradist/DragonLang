@@ -19,6 +19,12 @@
 
 namespace DragonLang::Common::AST {
 
+enum class Id {
+  Function,
+  Letter,
+  Variable,
+};
+
 /// Expression - Base class for all expression nodes
 class Expression {
  public:
@@ -27,22 +33,26 @@ class Expression {
   virtual llvm::Value *codegen(llvm::IRBuilder<> & builder) = 0;
 };
 
-/// NumberExpression - Expression class for numeric literals like "1.0"
-class NumberExpression : public Expression {
-  double Val;
-
+/// NumberValueExpression - Expression class for numeric literals like "1.0"
+class NumberValueExpression : public Expression {
  public:
-  NumberExpression(double Val) : Val(Val) {}
+  NumberValueExpression(int intPart, unsigned fracPart, int expPart)
+    : IntPart(intPart)
+    , FracPart(fracPart)
+    , ExpPart(expPart) {}
 
-  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
+ private:
+  double IntPart;
+  double FracPart;
+  double ExpPart;
 };
 
-/// VariableExpression - Expression class for referencing a variable, like "a"
-class VariableExpression : public Expression {
+/// LetterExpression - Expression class for referencing a variable, like "a"
+class LetterExpression : public Expression {
   std::string Name;
 
  public:
-  VariableExpression(const std::string &Name) : Name(Name) {}
+  LetterExpression(const std::string &Name) : Name(Name) {}
 
   llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 };

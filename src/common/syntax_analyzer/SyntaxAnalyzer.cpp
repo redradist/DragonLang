@@ -39,9 +39,57 @@ void SyntaxAnalyzer::parseFile(const std::string & _file) {
   if (lexical_analyzers_.count(_file) > 0) {
     auto & lexicalAnalyzer = lexical_analyzers_[_file];
     while (auto token = lexicalAnalyzer->getNextToken()) {
+      token_buffer_.push_back(token);
+      if (auto matchRes = matchWithLetter(token)) {
 
+      }
     }
   }
+}
+
+SyntaxAnalyzer::MatchResult
+SyntaxAnalyzer::matchWithExpression(
+    std::optional<LexicalAnalyzer::Token> anOptional) {
+  return MatchResult{true, true};
+}
+
+SyntaxAnalyzer::MatchResult
+SyntaxAnalyzer::matchWithFunction() {
+  return MatchResult{};
+}
+
+// <var> ::= < keyword: let > < symbol > < special: = > <expr>;
+SyntaxAnalyzer::MatchResult
+SyntaxAnalyzer::matchWithLetter(
+    std::optional<LexicalAnalyzer::Token> _token) {
+  MatchResult result{true, false};
+  do {
+    auto firstToken = token_buffer_[0];
+    if (TokenId::Keyword != firstToken.value().id_ ||
+        "let" != firstToken.value().item_) {
+      result.is_matched_ = false;
+      break;
+    }
+    {
+      if (token_buffer_.size() <= 1) break;
+      auto token = token_buffer_[1];
+      if (TokenId::SymbolId != token.value().id_) {
+        result.is_matched_ = false;
+        break;
+      }
+    }
+    {
+      if (token_buffer_.size() <= 2) break;
+      auto token = token_buffer_[2];
+      if (TokenId::SpecialSymbol != token.value().id_ ||
+          "=" != token.value().item_) {
+        result.is_matched_ = false;
+        break;
+      }
+    }
+    result.is_finished_ = true;
+  } while (false);
+  return result;
 }
 
 }

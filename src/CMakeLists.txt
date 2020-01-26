@@ -13,6 +13,8 @@ set(SRC_ALL "main.cpp"
             "Dragon.cpp")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
+include_directories(/usr/include/llvm-10)
+include_directories(/usr/include/llvm-c-10)
 
 add_subdirectory(common/lexical_analyzer)
 add_subdirectory(common/syntax_analyzer)

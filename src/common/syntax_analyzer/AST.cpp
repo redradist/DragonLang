@@ -29,11 +29,7 @@ llvm::Value *LogErrorV(const char *Str) {
   return nullptr;
 }
 
-llvm::Value *NumberExpression::codegen(llvm::IRBuilder<> & builder) {
-  return llvm::ConstantFP::get(builder.getContext(), llvm::APFloat(Val));
-}
-
-llvm::Value *VariableExpression::codegen(llvm::IRBuilder<> & builder) {
+llvm::Value *LetterExpression::codegen(llvm::IRBuilder<> & builder) {
   // Look this variable up in the function.
   llvm::Value *V = NamedValues[Name];
   if (!V)

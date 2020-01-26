@@ -1,3 +1,3 @@
-Definition of Gramma:
+Definition of Grammar:
     <expr> ::= <term>|<expr><addop><term>
-    <expr> ::= <term>|<expr><addop><term>
+    <numVal> ::= <numVal>
