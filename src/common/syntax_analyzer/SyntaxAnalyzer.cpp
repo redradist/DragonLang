@@ -10,7 +10,11 @@
 #include <thread>
 #include <string>
 #include <functional>
-
+#include <memory>
+#include <common/syntax_analyzer/ast/Expression.hpp>
+#include <common/syntax_analyzer/ast/matchers/ExpressionMatcher.hpp>
+#include <common/syntax_analyzer/ast/Letter.hpp>
+#include <common/syntax_analyzer/ast/matchers/LetterMatcher.hpp>
 #include "SyntaxAnalyzer.hpp"
 
 namespace DragonLang::Common {
@@ -35,61 +39,78 @@ SyntaxAnalyzer::~SyntaxAnalyzer() {
   }
 }
 
+bool isAmbigious(bool *boolAry, int size) {
+  bool areAnyTrue = false;
+  bool areTwoTrue = false;
+  for(int i = 0; (!areTwoTrue) && (i < size); i++) {
+    areTwoTrue = (areAnyTrue && boolAry[i]);
+    areAnyTrue |= boolAry[i];
+  }
+  return ((areAnyTrue) && (!areTwoTrue));
+}
+
+template<typename TO, typename FROM>
+std::unique_ptr<TO> static_pointer_cast (std::unique_ptr<FROM>&& old){
+  return std::unique_ptr<TO>{static_cast<TO*>(old.release())};
+}
+
+template<typename TO, typename FROM>
+std::unique_ptr<TO> dynamic_pointer_cast (std::unique_ptr<FROM>&& old) {
+  return std::unique_ptr<TO>{dynamic_cast<TO*>(old.release())};
+}
+
 void SyntaxAnalyzer::parseFile(const std::string & _file) {
+  using DragonLang::Common::AST::Matchers::IMatcher;
+  using DragonLang::Common::AST::Matchers::MatcherBuilderBase;
+  using DragonLang::Common::AST::Matchers::ExpressionMatcher;
+  using DragonLang::Common::AST::Expression;
+  using DragonLang::Common::AST::Matchers::LetterMatcher;
+  using DragonLang::Common::AST::Letter;
+
   if (lexical_analyzers_.count(_file) > 0) {
     auto & lexicalAnalyzer = lexical_analyzers_[_file];
+
+    std::vector<std::unique_ptr<IMatcher>> prevPartMatches;
+    std::vector<std::unique_ptr<IMatcher>> prevFullMatches;
     while (auto token = lexicalAnalyzer->getNextToken()) {
       token_buffer_.push_back(token);
-      if (auto matchRes = matchWithLetter(token)) {
 
+      std::vector<std::unique_ptr<IMatcher>> partMatches;
+      std::vector<std::unique_ptr<IMatcher>> fullMatches;
+      std::vector<std::unique_ptr<IMatcher>> matchers;
+      matchers.push_back(std::make_unique<LetterMatcher>(token_buffer_, 0));
+//      matchers.push_back(std::make_unique<ExpressionMatcher>(token_buffer_, 0));
+
+      uint16_t numMatches = 0;
+      for (auto& matcher : matchers) {
+        if (matcher->isMatch()) {
+          numMatches += 1;
+          if (matcher->isFullMatch()) {
+            fullMatches.push_back(std::move(matcher));
+          } else {
+            partMatches.push_back(std::move(matcher));
+          }
+        }
+      }
+      assert(fullMatches.size() <= 1);
+
+      if (fullMatches.empty() && !prevFullMatches.empty()) {
+        switch (prevFullMatches.front()->getId()) {
+          case ASTId::Expression:break;
+          case ASTId::Letter: {
+            auto matcher = dynamic_pointer_cast<MatcherBuilderBase<Letter>>(std::move(prevFullMatches.front()));
+            auto letter = matcher->build();
+            break;
+          }
+          case ASTId::ConstNumber:break;
+          case ASTId::Function:break;
+        }
+        token_buffer_.erase(token_buffer_.begin(), token_buffer_.end()-1);
       }
     }
   }
 }
 
-SyntaxAnalyzer::MatchResult
-SyntaxAnalyzer::matchWithExpression(
-    std::optional<LexicalAnalyzer::Token> anOptional) {
-  return MatchResult{true, true};
-}
-
-SyntaxAnalyzer::MatchResult
-SyntaxAnalyzer::matchWithFunction() {
-  return MatchResult{};
-}
-
-// <var> ::= < keyword: let > < symbol > < special: = > <expr>;
-SyntaxAnalyzer::MatchResult
-SyntaxAnalyzer::matchWithLetter(
-    std::optional<LexicalAnalyzer::Token> _token) {
-  MatchResult result{true, false};
-  do {
-    auto firstToken = token_buffer_[0];
-    if (TokenId::Keyword != firstToken.value().id_ ||
-        "let" != firstToken.value().item_) {
-      result.is_matched_ = false;
-      break;
-    }
-    {
-      if (token_buffer_.size() <= 1) break;
-      auto token = token_buffer_[1];
-      if (TokenId::SymbolId != token.value().id_) {
-        result.is_matched_ = false;
-        break;
-      }
-    }
-    {
-      if (token_buffer_.size() <= 2) break;
-      auto token = token_buffer_[2];
-      if (TokenId::SpecialSymbol != token.value().id_ ||
-          "=" != token.value().item_) {
-        result.is_matched_ = false;
-        break;
-      }
-    }
-    result.is_finished_ = true;
-  } while (false);
-  return result;
-}
+// <fun> ::= <keyword:"fun"> <symbol> <special:"("> <special:")"> <special:"{"> <fun_body> <special:"}">
 
 }
