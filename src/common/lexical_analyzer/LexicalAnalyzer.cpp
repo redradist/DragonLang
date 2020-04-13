@@ -7,7 +7,7 @@
 
 #include "LexicalAnalyzer.hpp"
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 const int kFullMatchIndex = 0;
 const int kTokenMatchIndex = 1;
@@ -46,7 +46,11 @@ LexicalAnalyzer::LexicalAnalyzer(const std::string & _file) {
   if (!fileStream) {
     std::cerr << boost::format("Cannot open file: %1%") % _file << std::endl;
     std::cerr << "Please, check the name of the file." << std::endl;
+#ifdef __EXCEPTIONS
     throw std::string("Cannot open file !!");
+#else
+    ::exit(1);
+#endif
   } else {
     std::string stream_buffer_ = {std::istreambuf_iterator<char>(fileStream),
                                   std::istreambuf_iterator<char>()};

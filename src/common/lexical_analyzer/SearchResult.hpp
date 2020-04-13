@@ -9,7 +9,7 @@
 
 #include "LexicalDefinitions.hpp"
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 struct SearchResult {
   bool is_found_ = false;

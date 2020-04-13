@@ -12,7 +12,7 @@
 #include "InStreamRange.hpp"
 #include "SearchResult.hpp"
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 class LexicalAnalyzer {
  public:

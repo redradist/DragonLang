@@ -3,7 +3,8 @@ project(dragon C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=lifetime")
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})

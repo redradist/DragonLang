@@ -14,7 +14,7 @@ list(APPEND SRC_ALL ${CMAKE_CURRENT_LIST_DIR}/../src/common/lexical_analyzer/Lex
 ################################
 # GTest
 ################################
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../ExternalTools/googletest googletest)
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../../Courtiers/googletest googletest)
 enable_testing()
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 

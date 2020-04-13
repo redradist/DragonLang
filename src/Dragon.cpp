@@ -8,7 +8,7 @@
 
 #include "Dragon.hpp"
 
-namespace DragonLang {
+namespace dragonlang {
 
 Dragon::Dragon() {
 

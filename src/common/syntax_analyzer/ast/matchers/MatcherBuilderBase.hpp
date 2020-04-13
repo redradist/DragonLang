@@ -8,7 +8,7 @@
 #include <common/syntax_analyzer/SyntaxDefinitions.hpp>
 #include "IMatcher.hpp"
 
-namespace DragonLang::Common::AST::Matchers {
+namespace dragonlang::common::ast::Matchers {
 
 template <typename T>
 class MatcherBuilderBase : public IMatcher {

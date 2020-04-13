@@ -5,7 +5,7 @@
 #ifndef DRAGONLANGUAGE_SYNTAXDEFINITIONS_HPP
 #define DRAGONLANGUAGE_SYNTAXDEFINITIONS_HPP
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 enum class ASTId {
   Expression,

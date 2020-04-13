@@ -5,9 +5,9 @@
 #include "LetterMatcher.hpp"
 #include "ExpressionMatcher.hpp"
 
-namespace DragonLang::Common::AST::Matchers {
+namespace dragonlang::common::ast::Matchers {
 
-// <var> ::= <keyword:"let"> <symbol> <special:"="> <expr> [special:";"]
+// <letter> ::= <keyword:"let"> <symbol> <special:"="> <expr> [special:";"]
 LetterMatcher::LetterMatcher(std::vector<LexicalAnalyzer::OptionalToken> _tokenBuffer, uint64_t _startPos) {
   do {
     std::string name;

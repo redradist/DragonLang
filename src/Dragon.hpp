@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-namespace DragonLang {
+namespace dragonlang {
 
 class Dragon {
  public:

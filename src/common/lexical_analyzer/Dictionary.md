@@ -1,5 +1,5 @@
-Smallest character in Dragon dictionary is a token
-There are 7 different tokens exists:
+Smallest character in Dragon dictionary is a token.
+There are 7 different tokens exist:
 1. SpecialSymbol:\
    < > + - = - > " ' ...
 2. Keyword:\

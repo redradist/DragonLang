@@ -9,13 +9,15 @@
 #include <common/syntax_analyzer/ast/Letter.hpp>
 #include "MatcherBuilderBase.hpp"
 
-namespace DragonLang::Common::AST::Matchers {
+namespace dragonlang::common::ast::Matchers {
 
 class LetterMatcher : public MatcherBuilderBase<Letter> {
  public:
-  // <var> ::= <keyword:"let"> <symbol> <special:"="> <expr> [special:";"]
+  // <var> ::= <token:keyword:"let"> <token:symbol> <token:special:"="> <expr> [token:special:";"]
   LetterMatcher(std::vector<LexicalAnalyzer::OptionalToken> _tokenBuffer, uint64_t _startPos);
+  [[nodiscard]]
   ASTId getId() const override;
+  [[nodiscard]]
   Letter build() const override;
 
  private:

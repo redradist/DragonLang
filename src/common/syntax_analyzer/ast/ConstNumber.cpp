@@ -4,7 +4,7 @@
 
 #include "ConstNumber.hpp"
 
-namespace DragonLang::Common::AST {
+namespace dragonlang::common::ast {
 
 
 

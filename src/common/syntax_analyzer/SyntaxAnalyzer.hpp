@@ -15,7 +15,7 @@
 #include <common/lexical_analyzer/LexicalAnalyzer.hpp>
 #include "common/syntax_analyzer/SyntaxDefinitions.hpp"
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 class SyntaxAnalyzer {
  public:

@@ -17,7 +17,7 @@
 #include <llvm/IR/Type.h>
 #include <llvm/IR/Verifier.h>
 
-namespace DragonLang::Common::AST {
+namespace dragonlang::common::ast {
 
 ///// Expression - Base class for all expression nodes
 //class Expression {

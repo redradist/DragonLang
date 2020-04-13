@@ -11,7 +11,7 @@
 #include <fstream>
 #include <sstream>
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 class InStreamRange {
  public:

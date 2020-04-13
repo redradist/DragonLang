@@ -26,9 +26,9 @@ using DragonLang::Common::SyntaxAnalyzer;
 
 int main(int _argc, char ** _argv) {
 //  Dragon dragon;
-//  dragon.processFile(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+//  dragon.processFile(std::string("/home/redra/Projects/DragonLanguage/Kingdom/test"
 //                                 "/common/lexical_analyzer/files/VarNumbers.me"));
-  SyntaxAnalyzer parser({std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  SyntaxAnalyzer parser({std::string("/home/redra/Projects/DragonLanguage/Kingdom/test"
                                        "/common/lexical_analyzer/files/VarNumbers.me")});
   return 0;
 }

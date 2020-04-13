@@ -12,7 +12,7 @@
 #include "Id.hpp"
 #include "Expression.hpp"
 
-namespace DragonLang::Common::AST {
+namespace dragonlang::common::ast {
 
 /// LetterExpression - Expression class for referencing a variable, like "a"
 class Letter : public Expression {

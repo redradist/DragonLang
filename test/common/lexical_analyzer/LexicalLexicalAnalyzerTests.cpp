@@ -7,8 +7,8 @@
 
 #include "common/lexical_analyzer/LexicalAnalyzer.hpp"
 
-using DragonLang::Common::TokenId;
-using DragonLang::Common::LexicalAnalyzer;
+using dragonlang::common::TokenId;
+using dragonlang::common::LexicalAnalyzer;
 
 struct LexicalAnalyzerTest : testing::Test {
   std::unique_ptr<LexicalAnalyzer> lexical_analyzer_;
@@ -22,7 +22,7 @@ struct LexicalAnalyzerTest : testing::Test {
 
 TEST_F(LexicalAnalyzerTest, String_me_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
                                                                     "/common/lexical_analyzer/files/Strings.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 78);
@@ -187,7 +187,7 @@ TEST_F(LexicalAnalyzerTest, String_me_Valid)
 
 TEST_F(LexicalAnalyzerTest, VarString_me_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
                                                                     "/common/lexical_analyzer/files/VarStrings.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 96);
@@ -388,7 +388,7 @@ TEST_F(LexicalAnalyzerTest, VarString_me_Valid)
 
 TEST_F(LexicalAnalyzerTest, Numbers_me_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
                                                                     "/common/lexical_analyzer/files/Numbers.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 37);
@@ -471,7 +471,7 @@ TEST_F(LexicalAnalyzerTest, Numbers_me_Valid)
 
 TEST_F(LexicalAnalyzerTest, VarNumbers_me_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
                                                                     "/common/lexical_analyzer/files/VarNumbers.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 46);
@@ -572,7 +572,7 @@ TEST_F(LexicalAnalyzerTest, VarNumbers_me_Valid)
 
 TEST_F(LexicalAnalyzerTest, Function_me_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
                                                                     "/common/lexical_analyzer/files/Function.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 23);
@@ -626,7 +626,7 @@ TEST_F(LexicalAnalyzerTest, Function_me_Valid)
 
 TEST_F(LexicalAnalyzerTest, Function_Plus_Logic_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLanguage/Kingdom/tests"
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
                                                                     "/common/lexical_analyzer/files/Function_Plus_Logic.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 34);

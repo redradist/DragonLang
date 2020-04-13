@@ -4,7 +4,7 @@
 //
 //#include "Id.hpp"
 //
-//namespace DragonLang::Common::AST {
+//namespace dragonlang::common::ast {
 //
 ////===----------------------------------------------------------------------===//
 //// Code Generation

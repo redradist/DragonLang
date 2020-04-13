@@ -9,14 +9,16 @@
 #include <common/syntax_analyzer/ast/Expression.hpp>
 #include "MatcherBuilderBase.hpp"
 
-namespace DragonLang::Common::AST::Matchers {
+namespace dragonlang::common::ast::Matchers {
 
 class ExpressionMatcher : public MatcherBuilderBase<Expression> {
  public:
   // <var> ::= <let>
   //         | <const_number>
   ExpressionMatcher(std::vector<LexicalAnalyzer::OptionalToken> _tokenBuffer, uint64_t _startPos);
+  [[nodiscard]]
   ASTId getId() const override;
+  [[nodiscard]]
   Expression build() const override;
 };
 

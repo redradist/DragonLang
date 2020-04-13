@@ -4,7 +4,7 @@
 
 #include "Letter.hpp"
 
-namespace DragonLang::Common::AST {
+namespace dragonlang::common::ast {
 
 llvm::Value* Letter::codegen(llvm::IRBuilder<> & builder) {
   // Look this variable up in the function.

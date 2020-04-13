@@ -9,13 +9,15 @@
 #include <common/syntax_analyzer/ast/ConstNumber.hpp>
 #include "MatcherBuilderBase.hpp"
 
-namespace DragonLang::Common::AST::Matchers {
+namespace dragonlang::common::ast::Matchers {
 
 class ConstNumberMatcher : public MatcherBuilderBase<ConstNumber> {
  public:
   // <const_number> ::=
   ConstNumberMatcher(std::vector<LexicalAnalyzer::OptionalToken> _tokenBuffer, uint64_t _startPos);
+  [[nodiscard]]
   ASTId getId() const override;
+  [[nodiscard]]
   ConstNumber build() const override;
 };
 

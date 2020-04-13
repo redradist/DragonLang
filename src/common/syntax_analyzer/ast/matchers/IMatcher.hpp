@@ -7,7 +7,7 @@
 
 #include <common/syntax_analyzer/ast/Id.hpp>
 
-namespace DragonLang::Common::AST::Matchers {
+namespace dragonlang::common::ast::Matchers {
 
 class IMatcher {
  public:

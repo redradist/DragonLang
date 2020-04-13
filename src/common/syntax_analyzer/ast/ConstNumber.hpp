@@ -5,7 +5,7 @@
 #ifndef DRAGONLANGUAGE_CONSTNUMBER_HPP
 #define DRAGONLANGUAGE_CONSTNUMBER_HPP
 
-namespace DragonLang::Common::AST {
+namespace dragonlang::common::ast {
 
 class ConstNumber {
 

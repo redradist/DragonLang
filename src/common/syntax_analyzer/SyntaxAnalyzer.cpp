@@ -17,7 +17,7 @@
 #include <common/syntax_analyzer/ast/matchers/LetterMatcher.hpp>
 #include "SyntaxAnalyzer.hpp"
 
-namespace DragonLang::Common {
+namespace dragonlang::common {
 
 SyntaxAnalyzer::SyntaxAnalyzer(const std::unordered_set<std::string> & _files) {
   for (const auto & kFile : _files) {
@@ -60,12 +60,12 @@ std::unique_ptr<TO> dynamic_pointer_cast (std::unique_ptr<FROM>&& old) {
 }
 
 void SyntaxAnalyzer::parseFile(const std::string & _file) {
-  using DragonLang::Common::AST::Matchers::IMatcher;
-  using DragonLang::Common::AST::Matchers::MatcherBuilderBase;
-  using DragonLang::Common::AST::Matchers::ExpressionMatcher;
-  using DragonLang::Common::AST::Expression;
-  using DragonLang::Common::AST::Matchers::LetterMatcher;
-  using DragonLang::Common::AST::Letter;
+  using dragonlang::common::ast::Matchers::IMatcher;
+  using dragonlang::common::ast::Matchers::MatcherBuilderBase;
+  using dragonlang::common::ast::Matchers::ExpressionMatcher;
+  using dragonlang::common::ast::Expression;
+  using dragonlang::common::ast::Matchers::LetterMatcher;
+  using dragonlang::common::ast::Letter;
 
   if (lexical_analyzers_.count(_file) > 0) {
     auto & lexicalAnalyzer = lexical_analyzers_[_file];
