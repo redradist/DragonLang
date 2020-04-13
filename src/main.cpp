@@ -21,8 +21,8 @@
 #include "common/syntax_analyzer/SyntaxAnalyzer.hpp"
 #include <iterator>
 
-using DragonLang::Dragon;
-using DragonLang::Common::SyntaxAnalyzer;
+using dragonlang::Dragon;
+using dragonlang::common::SyntaxAnalyzer;
 
 int main(int _argc, char ** _argv) {
 //  Dragon dragon;

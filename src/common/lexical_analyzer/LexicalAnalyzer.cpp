@@ -44,7 +44,7 @@ std::string LexicalAnalyzer::Token::toString() const {
 LexicalAnalyzer::LexicalAnalyzer(const std::string & _file) {
   std::ifstream fileStream{_file};
   if (!fileStream) {
-    std::cerr << boost::format("Cannot open file: %1%") % _file << std::endl;
+    std::cerr << "Cannot open file: " << _file << std::endl;
     std::cerr << "Please, check the name of the file." << std::endl;
 #ifdef __EXCEPTIONS
     throw std::string("Cannot open file !!");
