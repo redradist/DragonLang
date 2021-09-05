@@ -4,7 +4,6 @@ project(dragon C CXX)
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=lifetime")
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -14,8 +13,6 @@ set(SRC_ALL "main.cpp"
             "Dragon.cpp")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
-include_directories(/usr/include/llvm-10)
-include_directories(/usr/include/llvm-c-10)
 
 add_subdirectory(common/lexical_analyzer)
 add_subdirectory(common/syntax_analyzer)
@@ -23,4 +20,4 @@ add_subdirectory(compiler)
 add_subdirectory(interpreter)
 
 add_executable(dragon ${SRC_ALL} ${SRC_ALL})
-target_link_libraries(${PROJECT_NAME} lexical_analyzer syntax_analyzer LLVM-10)
+target_link_libraries(${PROJECT_NAME} lexical_analyzer syntax_analyzer)

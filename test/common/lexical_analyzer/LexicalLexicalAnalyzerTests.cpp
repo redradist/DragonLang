@@ -626,8 +626,8 @@ TEST_F(LexicalAnalyzerTest, Function_me_Valid)
 
 TEST_F(LexicalAnalyzerTest, Function_Plus_Logic_Valid)
 {
-  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
-                                                                    "/common/lexical_analyzer/files/Function_Plus_Logic.me"));
+  lexical_analyzer_ = std::make_unique<LexicalAnalyzer>(std::string("/home/redra/Projects/DragonLang/Kingdom"
+                                                                    "/test/common/lexical_analyzer/files/Function_Plus_Logic.me"));
   const auto & kTokens = lexical_analyzer_->getAllTokens();
   ASSERT_EQ(kTokens.size(), 34);
   int tokenIndex = 0;

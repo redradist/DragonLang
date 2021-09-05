@@ -158,7 +158,7 @@ std::vector<LexicalAnalyzer::Token>
 LexicalAnalyzer::getAllTokens() {
   std::vector<LexicalAnalyzer::Token> tokens;
   LexicalAnalyzer::OptionalToken token;
-  while (token = getNextToken()) {
+  while ((token = getNextToken())) {
     tokens.push_back(token.value());
   }
   return tokens;

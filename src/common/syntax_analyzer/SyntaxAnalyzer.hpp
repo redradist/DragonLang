@@ -13,7 +13,7 @@
 #include <future>
 
 #include <common/lexical_analyzer/LexicalAnalyzer.hpp>
-#include "common/syntax_analyzer/SyntaxDefinitions.hpp"
+#include <common/syntax_analyzer/SyntaxDefinitions.hpp>
 
 namespace dragonlang::common {
 

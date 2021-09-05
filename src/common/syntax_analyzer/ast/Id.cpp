@@ -59,26 +59,6 @@
 //  }
 //}
 //
-//llvm::Value *FunCallExpression::codegen(llvm::IRBuilder<> & builder) {
-//  // Look up the name in the global module table.
-//  llvm::Function *CalleeF = TheModule->getFunction(Callee);
-//  if (!CalleeF)
-//    return LogErrorV("Unknown function referenced");
-//
-//  // If argument mismatch error.
-//  if (CalleeF->arg_size() != Args.size())
-//    return LogErrorV("Incorrect # arguments passed");
-//
-//  std::vector<llvm::Value*> ArgsV;
-//  for (unsigned i = 0, e = Args.size(); i != e; ++i) {
-//    ArgsV.push_back(Args[i]->codegen(builder));
-//    if (!ArgsV.back())
-//      return nullptr;
-//  }
-//
-//  return builder.CreateCall(CalleeF, ArgsV, "calltmp");
-//}
-//
 //llvm::Function *FunPrototype::codegen(llvm::IRBuilder<> & builder) {
 //  // Make the function type:  double(double,double) etc.
 //  std::vector<llvm::Type *> Doubles(Args.size(), llvm::Type::getDoubleTy(builder.getContext()));

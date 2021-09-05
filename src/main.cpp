@@ -18,17 +18,22 @@
 #include <sstream>
 
 #include "Dragon.hpp"
+#include "common/lexical_analyzer/LexicalAnalyzer.hpp"
 #include "common/syntax_analyzer/SyntaxAnalyzer.hpp"
 #include <iterator>
 
 using dragonlang::Dragon;
+using dragonlang::common::LexicalAnalyzer;
 using dragonlang::common::SyntaxAnalyzer;
 
 int main(int _argc, char ** _argv) {
 //  Dragon dragon;
-//  dragon.processFile(std::string("/home/redra/Projects/DragonLanguage/Kingdom/test"
+//  dragon.processFile(std::string("/home/redra/Projects/DragonLang/Kingdom/test"
 //                                 "/common/lexical_analyzer/files/VarNumbers.me"));
-  SyntaxAnalyzer parser({std::string("/home/redra/Projects/DragonLanguage/Kingdom/test"
-                                       "/common/lexical_analyzer/files/VarNumbers.me")});
+  LexicalAnalyzer lexicalAnalyzer({std::string("/home/redra/Projects/DragonLang/Kingdom/test"
+                                     "/common/lexical_analyzer/files/Function_Plus_Logic.me")});
+  lexicalAnalyzer.getAllTokens();
+//  SyntaxAnalyzer syntaxAnalyzer({std::string("/home/redra/Projects/DragonLang/Kingdom/test"
+//                                       "/common/lexical_analyzer/files/VarNumbers.me")});
   return 0;
 }

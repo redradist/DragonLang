@@ -7,7 +7,10 @@
 
 namespace dragonlang::common::ast::Matchers {
 
-// <letter> ::= <keyword:"let"> <symbol> <special:"="> <expr> [special:";"]
+/*
+ * letter
+ * ::= <keyword:"let"> <symbol> <special:"="> expression [special:";"]
+ */
 LetterMatcher::LetterMatcher(std::vector<LexicalAnalyzer::OptionalToken> _tokenBuffer, uint64_t _startPos) {
   do {
     std::string name;
@@ -70,9 +73,9 @@ LetterMatcher::LetterMatcher(std::vector<LexicalAnalyzer::OptionalToken> _tokenB
   } while (false);
 }
 
-Letter
+std::unique_ptr<Letter>
 LetterMatcher::build() const {
-  return Letter{*name_};
+  return std::make_unique<Letter>(*name_);
 }
 
 }

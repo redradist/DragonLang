@@ -2,6 +2,7 @@
 // Created by redra on 04.04.20.
 //
 
+#include <common/syntax_analyzer/ast/FunCallExpression.hpp>
 #include "ExpressionMatcher.hpp"
 
 namespace dragonlang::common::ast::Matchers {
@@ -31,9 +32,9 @@ ExpressionMatcher::ExpressionMatcher(std::vector<LexicalAnalyzer::OptionalToken>
   } while (false);
 }
 
-Expression
+std::unique_ptr<Expression>
 ExpressionMatcher::build() const {
-  return Expression{};
+  return nullptr;
 }
 
 }

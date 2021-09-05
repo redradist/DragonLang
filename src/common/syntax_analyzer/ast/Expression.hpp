@@ -24,13 +24,8 @@ class Expression {
  public:
   virtual ~Expression() = default;
 
-  virtual llvm::Value *codegen(llvm::IRBuilder<> &builder);
+  virtual llvm::Value *codegen(llvm::IRBuilder<> &builder) = 0;
 };
-
-inline
-llvm::Value* Expression::codegen(llvm::IRBuilder<> &builder) {
-  return nullptr;
-}
 
 }
 

@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 project(syntax_analyzer C CXX)
 
-set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 file(GLOB_RECURSE INC_ALL "*.h" "*.hpp")
@@ -13,4 +12,4 @@ include_directories(/usr/include/llvm-c-10)
 
 add_library(${PROJECT_NAME} SHARED ${SRC_ALL} ${INC_ALL})
 target_include_directories(${PROJECT_NAME} PUBLIC ${INC_ALL})
-target_link_libraries(${PROJECT_NAME} pthread lexical_analyzer LLVM-10)
+target_link_libraries(${PROJECT_NAME} pthread lexical_analyzer)

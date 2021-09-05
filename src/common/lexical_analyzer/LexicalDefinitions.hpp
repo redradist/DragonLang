@@ -10,9 +10,9 @@ namespace dragonlang::common {
 enum class TokenId {
   SpecialSymbol,  // < > + - = - > " ' ...
   Keyword,        // fun return class ...
-  ContextKeyword, // in, is, not, as ...
+  ContextKeyword, // in is not as ...
   NewLine,        // \r \n
-  NumberConst,    // 23, 27, 1, 3
+  NumberConst,    // 23 27.23 1 3 ...
   TextConst,      // 'Hello Denis Good Job', "Hello Denis Good Job" ...
   SymbolId,       // Name of variables, name of classes, name of structs and so on ...
 };
@@ -43,8 +43,8 @@ inline std::regex const kRegexKeyword(
   R"(protected|)"
   R"(private|)"
   R"(internal|)"
-  R"(data|)"
   R"(interface|)"
+  R"(data|)"
   R"(trait|)"
   R"(import|)"
   R"(from|)"
@@ -81,6 +81,7 @@ inline std::regex const kRegexContextKeyword(
   R"(to)"
   R"()(\s|\W|$))", kRegexOptions);
 inline std::regex const kRegexSpecialSymbol(
+    "e"
   R"(^([)"
   R"(\()"
   R"(\))"
@@ -108,7 +109,7 @@ inline std::regex const kRegexSpecialSymbol(
   R"(\{)"
   R"(\})"
   R"(]))", kRegexOptions);
-inline std::regex const kRegexNumberConst(R"(^(([0-9]+([.][0-9]*)?|[.][0-9]+)(e([0-9]+([.][0-9]*)?|[.][0-9]+))?)(\s|\W|$))", kRegexOptions);
+inline std::regex const kRegexNumberConst(R"(^([0-9]+([.][0-9]*)?|([0-9]*)?[.][0-9]+))", kRegexOptions);
 inline std::regex const kRegexStringSingleQuoteConst(R"(^'([^\n]*)')", kRegexOptions);
 inline std::regex const kRegexStringTwoSingleQuoteConst(R"(^''([^\n]*)'')", kRegexOptions);
 inline std::regex const kRegexStringThreeSingleQuoteConst(R"(^'''([^]*?)''')", kRegexOptions);

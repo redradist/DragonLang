@@ -19,7 +19,7 @@ class ExpressionMatcher : public MatcherBuilderBase<Expression> {
   [[nodiscard]]
   ASTId getId() const override;
   [[nodiscard]]
-  Expression build() const override;
+  std::unique_ptr<Expression> build() const override;
 };
 
 inline

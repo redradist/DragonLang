@@ -18,7 +18,7 @@ class LetterMatcher : public MatcherBuilderBase<Letter> {
   [[nodiscard]]
   ASTId getId() const override;
   [[nodiscard]]
-  Letter build() const override;
+  std::unique_ptr<Letter> build() const override;
 
  private:
   std::optional<std::string> name_;

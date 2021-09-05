@@ -13,7 +13,7 @@ namespace dragonlang::common::ast::Matchers {
 template <typename T>
 class MatcherBuilderBase : public IMatcher {
  public:
-  virtual T build() const = 0;
+  virtual std::unique_ptr<T> build() const = 0;
 };
 
 }

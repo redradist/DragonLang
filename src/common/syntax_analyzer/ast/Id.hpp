@@ -54,19 +54,6 @@ namespace dragonlang::common::ast {
 //  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
 //};
 //
-///// FunCallExpression - Expression class for function calls
-//class FunCallExpression : public Expression {
-//  std::string Callee;
-//  std::vector<std::unique_ptr<Expression>> Args;
-//
-// public:
-//  FunCallExpression(const std::string &Callee,
-//                    std::vector<std::unique_ptr<Expression>> Args)
-//      : Callee(Callee), Args(std::move(Args)) {}
-//
-//  llvm::Value *codegen(llvm::IRBuilder<> & builder) override;
-//};
-//
 ///// FunPrototype - This class represents the "prototype" for a function,
 ///// which captures its name, and its argument names (thus implicitly the number
 ///// of arguments the function takes)
