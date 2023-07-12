@@ -8,7 +8,7 @@ The possible syntax for this language should look like something like this:
 #[feature:dynamic] Dynamicly Typed feature of language
 #[feature:unsafe] Unsafe feature of language
 #[feature:library:no-std] For Micro Controllers, only libcore is supported
-#[feature:memory:no-gc] No Garbage Collector
+#[feature:library:no-gc] No Garbage Collector
 #[feature:language:python]
 #[feature:language:javascript]
 #[feature:language:typescript]
