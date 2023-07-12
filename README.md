@@ -48,10 +48,9 @@ Object.new_func = fun () # Lambda function
 Object() # Value based object creation
 
 unsafe stack 2424 # Allocate Stack Buffer
-unsafe stack[global] 2424 # Allocate Stack Buffer available cross Multi-Thread-s
 
-unsafe alloc 2424 # Buffer allocation
-unsafe alloc[global] 2424 # Allocate Buffer available cross Multi-Thread-s
+unsafe alloc 2424 # Heap buffer allocation with raw memory
+unsafe alloc[global] 2424 # Heap buffer available cross Multi-Thread-s raw memory
 
 alloc Object() # Reference counting
 alloc[global] Object() # Multi-Thread Reference counting
