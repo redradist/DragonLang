@@ -12,6 +12,7 @@ The possible syntax for this language should look like something like this:
 #[feature:language:python]
 #[feature:language:javascript]
 #[feature:language:typescript]
+#[feature:language:cpp]
 
 fun some_function()
 
@@ -60,6 +61,10 @@ new[global] Object() # Multi-Thread Garbage Collector
 
 obj = new Object() # new Object(), Garbage Collector
 new[global] Object() # Multi-Thread Garbage Collector
+
+from "cpp@math.h" import cos
+from "cpp@mod:std" import thread
+from "cpp@thread" import thread
 
 pub enum Token:
 	  Keyword: str,
