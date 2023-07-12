@@ -81,7 +81,10 @@ pub coro fun fib(n: int) -> value0:Iterator[int], value1:int ~ CustomError:
     check positive: postive(n)
 
     raise CustomError()
-    let name
+    let name = 4
+    name = 5 # Error, name is immutable
+    let mut name2 = 4
+    name2 = 8 # It is okay
     a, b = 0, 1
     while a < n:
     	await sfsas
